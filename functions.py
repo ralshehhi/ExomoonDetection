@@ -72,7 +72,7 @@ def get_loss(klayer, w=1):
 		l1 = K.mean((y_pred - y_true), axis=-1)
 		klayer1 =  K.expand_dims(klayer,2)
 		kconv = conv1d(klayer1, kwindow2, padding='same')
-		a = K.abs(kconv[:,kconv.shape[1]-1] - kconv[:,1:])
+		a = K.abs(kconv[:,:kconv.shape[1]-1] - kconv[:,1:])
 		l2 = K.mean(a,axis=1)
 		return (l1+l2)
 	return loss
