@@ -77,7 +77,7 @@ early_stopping = EarlyStopping(monitor='val_loss', patience=10)
 csv_logger = CSVLogger(log_file)
 cb=[reduce_lr, early_stopping, csv_logger,checkpoint]
 layer = model.layers[-3].output
-model.compile(optimizer='Adam', loss=get_loss(layer,1), metrics = ['accuracy'])
+model.compile(optimizer=opt, loss=get_loss(layer,1), metrics = ['accuracy'])
 model.fit(train_data,train_label,batch_size=bs,epochs=ep,validation_split=vs,callbacks=cb,verbose=0)
 
 print("Predicting...")
