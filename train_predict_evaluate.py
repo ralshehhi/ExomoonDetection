@@ -73,7 +73,7 @@ cp_file = check_folder+'/model_epoch{epoch:02d}_acc{val_acc:.2f}.h5'
 log_file = check_folder+'/log.csv'
 checkpoint = ModelCheckpoint(cp_file, monitor='val_loss', save_best_only=True, verbose=0)
 reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=10, min_lr=0.0001)
-early_stopping = EarlyStopping(monitor='val_loss', patience=10)
+early_stopping = EarlyStopping(monitor='val_loss', patience=20)
 csv_logger = CSVLogger(log_file)
 cb=[reduce_lr, early_stopping, csv_logger,checkpoint]
 layer = model.layers[-3].output
